@@ -23,7 +23,7 @@ class HealthlyScreen extends StatelessWidget {
             const SizedBox(height: 40),
             // Top Logo Image (replace '' with your asset path)
             Image.asset(
-              '', // ← add your image path here (e.g., 'assets/images/healthly_logo.png')
+              'assets/img/logo.png', // ← add your image path here (e.g., 'assets/images/healthly_logo.png')
               height: 60,
               fit: BoxFit.contain,
             ),
