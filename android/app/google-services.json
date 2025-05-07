@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "782709282009",
+    "project_id": "healthyhms-3cbb3",
+    "storage_bucket": "healthyhms-3cbb3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782709282009:android:9a668850d9d57003685ac8",
+        "android_client_info": {
+          "package_name": "com.kartel.healthlly"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMWtmHyp6ydgLcyvBfLi-h3tTYSWL4y-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
