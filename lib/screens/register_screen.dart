@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../services/auth_service.dart';
+import '../utils/auth_util.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -37,8 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _errorMessage = '';
       });
 
-      final authService = Provider.of<AuthService>(context, listen: false);
-      final error = await authService.register(
+      final error = await AuthUtil.register(
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );

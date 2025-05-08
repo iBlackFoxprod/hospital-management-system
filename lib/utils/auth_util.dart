@@ -1,14 +1,17 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
-class AuthService extends ChangeNotifier {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+mport 'package:firebase_auth/firebase_auth.dart';
 
-  // Create user stream
-  Stream<User?> get user => _auth.authStateChanges();
+class AuthUtil {
+  static final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  // Get current user
+  static User? get currentUser => _auth.currentUser;
+
+  // Get auth state stream
+  static Stream<User?> authStateChanges() => _auth.authStateChanges();
 
   // Sign in with email & password
-  Future<String?> signIn(String email, String password) async {
+  static Future<String?> signIn(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(
         email: email,
@@ -21,7 +24,7 @@ class AuthService extends ChangeNotifier {
   }
 
   // Register with email & password
-  Future<String?> register(String email, String password) async {
+  static Future<String?> register(String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -34,12 +37,12 @@ class AuthService extends ChangeNotifier {
   }
 
   // Sign out
-  Future<void> signOut() async {
+  static Future<void> signOut() async {
     await _auth.signOut();
   }
 
   // Get current user ID
-  String? getCurrentUserId() {
+  static String? getCurrentUserId() {
     return _auth.currentUser?.uid;
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../services/auth_service.dart';
+import '../utils/auth_util.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -28,8 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _errorMessage = '';
       });
 
-      final authService = Provider.of<AuthService>(context, listen: false);
-      final error = await authService.signIn(
+      final error = await AuthUtil.signIn(
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );

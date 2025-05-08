@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:provider/provider.dart';
-import 'services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/home_screen.dart';
@@ -11,15 +11,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => AuthService(),
-      child: HealthlyApp(),
-    ),
-  );
+  runApp(HealthlyApp());
 }
 
 class HealthlyApp extends StatelessWidget {
+  const HealthlyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,9 +26,8 @@ class HealthlyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      home: AuthWrapper(),
       routes: {
-        '/': (context) => AuthWrapper(),
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
         '/home': (context) => HomeScreen(),
@@ -41,13 +37,15 @@ class HealthlyApp extends StatelessWidget {
 }
 
 class AuthWrapper extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  const AuthWrapper({super.key});
+  
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
-    
-    return StreamBuilder(
-      stream: authService.user,
-      builder: (context, AsyncSnapshot snapshot) {
+    return StreamBuilder<User?>(
+      stream: _auth.authStateChanges(),
+      builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final user = snapshot.data;
           if (user == null) {
