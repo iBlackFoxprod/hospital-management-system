@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "782709282009",
+    "firebase_url": "https://healthyhms-3cbb3-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "healthyhms-3cbb3",
     "storage_bucket": "healthyhms-3cbb3.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:782709282009:android:9a668850d9d57003685ac8",
+        "mobilesdk_app_id": "1:782709282009:android:86bb91cdd3c58e22685ac8",
         "android_client_info": {
-          "package_name": "com.kartel.healthlly"
+          "package_name": "com.example.healthy_hms"
         }
       },
       "oauth_client": [],

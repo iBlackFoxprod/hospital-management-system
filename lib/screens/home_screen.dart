@@ -5,7 +5,7 @@ import '../utils/auth_util.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthUtil>(context);
+    final authUtil = Provider.of<AuthUtil>(context);
     
     return Scaffold(
       appBar: AppBar(
@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
-              await authService.signOut();
+              await AuthUtil.signOut();
             },
           ),
         ],
@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Welcome, ${authService.getCurrentUserId() ?? "User"}!',
+                'Welcome, ${AuthUtil.getCurrentUserId() ?? "User"}!',
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,

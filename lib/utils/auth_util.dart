@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthUtil {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // Get current user
+  // Get current user 
   static User? get currentUser => _auth.currentUser;
 
   // Get auth state stream
