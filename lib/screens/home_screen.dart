@@ -1,33 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../services/auth_service.dart';
 
-void main() => runApp(HealthlyApp());
-
-class HealthlyApp extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HealthlyScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class HealthlyScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+    
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Healthy HMS'),
+        backgroundColor: Colors.blue,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              await authService.signOut();
+            },
+          ),
+        ],
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(height: 40),
-            // Top Logo Image (replace '' with your asset path)
-            Image.asset(
-              'assets/img/logo.png', // ← add your image path here (e.g., 'assets/images/healthly_logo.png')
-              height: 60,
-              fit: BoxFit.contain,
+            // Top Logo/Icon
+            const Icon(
+              Icons.health_and_safety,
+              size: 80,
+              color: Colors.blue,
+            ),
+            const Text(
+              'Healthy HMS',
+              style: TextStyle(
+                fontSize: 24, 
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
             ),
             const SizedBox(height: 50),
+            
+            // User welcome message
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Welcome, ${authService.getCurrentUserId() ?? "User"}!',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
             
             // Placeholder media box
             Container(
@@ -36,6 +60,7 @@ class HealthlyScreen extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: Colors.black),
               ),
               child: CustomPaint(
@@ -50,7 +75,7 @@ class HealthlyScreen extends StatelessWidget {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
-                shape: StadiumBorder(),
+                shape: const StadiumBorder(),
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
               child: const Icon(Icons.play_arrow, color: Colors.white),
