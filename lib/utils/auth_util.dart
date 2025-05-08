@@ -1,5 +1,5 @@
 
-mport 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthUtil {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
